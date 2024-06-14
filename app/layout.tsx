@@ -16,10 +16,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const info: string = await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("This is a fake async function.");
+    }, 1000);
+  });
+
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
       <ThemeProvider>
+        <div>RootLayout async info: {info}</div>
         <ClerkAuthProvider>{children}</ClerkAuthProvider>
       </ThemeProvider>
       </body>
